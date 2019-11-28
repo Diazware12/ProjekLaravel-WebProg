@@ -11,6 +11,9 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('admin/manageGenre');
+    return view('welcome');
 });
+
