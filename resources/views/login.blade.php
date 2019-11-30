@@ -3,7 +3,9 @@
 @section('title','ini login')
 
 @section('container')
-    <div class="container">
+    <div class="container">   
+    <p></p>
+    <p></p>
         <div class="jumbotron">
             <form>
                 <div class="form-group">

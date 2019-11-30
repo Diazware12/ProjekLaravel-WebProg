@@ -11,6 +11,9 @@
 |
 */
 
+
 Route::get('/', function () {
-    return view('admin/manageGenre');
+    return view('register');
 });
+
+
