@@ -11,46 +11,24 @@
 |
 */
 
+//guest
+    Route::get('/', function () {
+        return view('home');
+    });
 
-Route::get('/', function () {
-    return view('register');
-});
+    Route::get('/a', function () {
+        return view('login');
+    });
 
-Route::get('/a', function () {
-    return view('home');
-});
+    Route::get('/b', function () {
+        return view('register');
+    });
 
-Route::get('/b', function () {
-    return view('member.memberHome');
-});
-
-Route::get('/c', function () {
-    return view('admin.adminHome');
-});
-
-Route::get('/d', function () {
-    return view('login');
-});
-
-
-Route::get('/e', function () {
-    return view('admin.manageGenre');
-});
-Route::get('/f', function () {
-    return view('admin.manageMovie');
-});
-Route::get('/g', function () {
-    return view('admin.manageUser');
-});
-
-Route::get('/h', function () {
-    return view('admin.addMovie');
-});
-Route::get('/i', function () {
-    return view('admin.editMovie');
-});
-
-
+// member
+    
+    Route::get('/c', function () {
+        return view('member.memberHome');
+    });
 
 
 

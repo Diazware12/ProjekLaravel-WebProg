@@ -8,7 +8,7 @@
     <p></p>
         <div class="jumbotron">
             <form>
-                <h1>register</h1>
+                <h1><p style="text-align:center">Register</p></h1>
                 <div class="form-group">
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fullname">
                 </div>
