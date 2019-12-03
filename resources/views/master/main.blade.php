@@ -26,7 +26,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="#">login</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Register</a>

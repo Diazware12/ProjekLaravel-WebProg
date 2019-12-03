@@ -7,6 +7,7 @@
     <p></p>
     <p></p>
         <div class="jumbotron">
+        <h1><p style="text-align:center">Log In</p></h1>
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
