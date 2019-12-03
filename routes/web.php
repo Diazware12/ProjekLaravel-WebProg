@@ -29,28 +29,32 @@
         return view('movieDetail');
     });
 
+    Route::get('/d', function () {
+        return view('profile');
+    });
+
 // member
     
-    Route::get('/d', function () {
+    Route::get('/e', function () {
         return view('member.memberHome');
     });
-    Route::get('/e', function () {
+    Route::get('/f', function () {
         return view('member.memberMovieDetail');
     });
 
-    Route::get('/f', function () {
+    Route::get('/g', function () {
         return view('member.memberProfile');
     });
 
-    Route::get('/g', function () {
+    Route::get('/h', function () {
         return view('member.otherProfile');
     });
 
-    Route::get('/h', function () {
+    Route::get('/i', function () {
         return view('member.inbox');
     });
 
-    Route::get('/i', function () {
+    Route::get('/j', function () {
         return view('member.savedMovie');
     });
 
