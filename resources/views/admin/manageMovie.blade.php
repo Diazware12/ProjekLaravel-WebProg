@@ -1,13 +1,13 @@
-@extends('master/adminMain')
+@extends('layouts/app')
 
 @section('title','ini manageMovie')
 
 
 
-@section('container')
+@section('content')
     <div class="container">
     <h1>Manage Movie</h1>
-    <button type="button" class="btn btn-primary">Add Movie</button>
+    <a href="/manage/movie/addMovie" class="btn btn-primary">Add Movie</a>
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -22,40 +22,32 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach($film as $movies)
+            
                 <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>Thriller</td>
-                    <td>Diarick ke gap selingkuh</td>
-                    <td>gaada gambar</td>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{$movies->user->name}}</td>
+                    <td>{{$movies->genre->genreName}}</td>
+                    <td>{{$movies->title}}</td>
                     <td>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <img src="/storage/moviepicture/{{$movies->picture}}" alt="{{$movies->picture}}" width="140" height="100">
                     </td>
-                    <td>8.5</td>
                     <td>
-                        <a href="" class="badge badge-success">edit</a>
-                        <a href="" class="badge badge-danger">delete</a>
+                        {{$movies->description}}
+                    </td>
+                    <td>{{$movies->rating}}</td>
+                    <td>
+                        <a href="movie/{{$movies->id}}/edit" class="badge badge-success">edit</a>
+                        <form action="/manage/movie/{{$movies->id}}" method="post">
+                        @method('delete')
+                        @csrf
+                            <button type="submit" class="badge badge-danger">delete</button>
+                        </form>
+                        
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>admin</td>
-                    <td>Thriller</td>
-                    <td>Diarick ke gap selingkuh</td>
-                    <td>gaada gambar</td>
-                    <td>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </td>
-                    <td>8.5</td>
-                    <td>
-                        <a href="" class="badge badge-success">edit</a>
-                        <a href="" class="badge badge-danger">delete</a>
-                    </td>
-                </tr>
+               
+            @endforeach
 
             </tbody>
         </table>

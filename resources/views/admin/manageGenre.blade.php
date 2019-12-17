@@ -1,12 +1,12 @@
-@extends('master/adminMain')
+@extends('layouts/app')
 
 @section('title','ini manageGenre')
 
 
-@section('container')
+@section('content')
     <div class="container">
     <h1>Manage Genre</h1>
-    <button type="button" class="btn btn-primary">Add Genre</button>
+    <a href="/manage/genre/addGenre" class="btn btn-primary">Add Genre</a>
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -16,30 +16,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Sci fi</td>
+            @foreach($genre as $genre)
+            <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{$genre->genreName}}</td>
                     <td>
-                        <a href="" class="badge badge-success">edit</a>
-                        <a href="" class="badge badge-danger">delete</a>
+                        <a href="genre/{{$genre->id}}/edit" class="badge badge-success">edit</a>
+                        <form action="/manage/genre/{{$genre->id}}" method="post">
+                        @method('delete')
+                        @csrf
+                            <button type="submit" class="badge badge-danger">delete</button>
+                        </form>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Sci fi</td>
-                    <td>
-                        <a href="" class="badge badge-success">edit</a>
-                        <a href="" class="badge badge-danger">delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Sci fi</td>
-                    <td>
-                        <a href="" class="badge badge-success">edit</a>
-                        <a href="" class="badge badge-danger">delete</a>
-                    </td>
-                </tr>
+
+            @endforeach
+                
+                
 
             </tbody>
         </table>

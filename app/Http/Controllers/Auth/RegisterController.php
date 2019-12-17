@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -28,7 +33,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
+
 
     /**
      * Create a new controller instance.
@@ -49,9 +55,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed', 'regex:/^(?=.*?[0-9])/', 'alpha_num'],
+            'gender' => ['required', 'in:male,female'],
+            'address' => ['required'],
+            'birthday' => ['required', 'date_format:Y-m-d'],
+            'picture' => ['required', 'mimes:jpeg,png,jpg'],
         ]);
     }
 
@@ -63,10 +73,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $data['picture']->move(storage_path('app/public/profilepicture'), $data['picture']->getClientOriginalName());
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'gender'=>$data['gender'],
+            'address'=>$data['address'],
+            'DOB'=>$data['birthday'],
+            'picture'=>$data['picture']->getClientOriginalName()
         ]);
     }
+
+    public function register(Request $request)
+    {
+         $this->validator($request->all())->validate();
+
+          event(new registered($user = $this->create($request->all())));
+
+          return redirect($this->redirectPath())->with('message', 'Your message');
+    }
+
 }

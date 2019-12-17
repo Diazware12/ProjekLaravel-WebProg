@@ -1,8 +1,8 @@
-@extends('master/memberMain')
+@extends('layouts/app')
 
 @section('title','ini memberHome')
 
-@section('container')
+@section('content')
 <div class="container">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

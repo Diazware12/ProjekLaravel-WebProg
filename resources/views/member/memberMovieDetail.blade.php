@@ -1,8 +1,8 @@
-@extends('master/memberMain')
+@extends('layouts/app')
 
 @section('title','ini movieDetail')
 
-@section('container')
+@section('content')
 <div class="container">
     <div class="jumbotron">
         <div class="card mb-3">

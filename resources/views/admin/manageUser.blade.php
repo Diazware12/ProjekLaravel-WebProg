@@ -1,18 +1,19 @@
-@extends('master/adminMain')
+@extends('layouts/app')
 
 @section('title','ini manageMain')
 
 
 
-@section('container')
+@section('content')
     <div class="container">
     <h1>Manage User</h1>
-    <button type="button" class="btn btn-primary">Add User</button>
+    <a href="/manage/user/addUser" class="btn btn-primary">Add User</a>
         <table class="table">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">FullName</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Role</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Address</th>
@@ -22,32 +23,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Diarick purba</td>
-                <td>admin</td>
-                <td>shemale</td>
-                <td>binus square</td>
-                <td>haha</td>
-                <td>29-02-2019</td>
+            @foreach($user as $u)
+            <tr>
+            
+                <th scope="row">{{ $loop->iteration }}</th>
+                <td>{{$u->name}}</td>
+                <td>{{$u->email}}</td>
+                
                 <td>
-                    <a href="" class="badge badge-success">edit</a>
-                    <a href="" class="badge badge-danger">delete</a>
+                @if($u->role===1)
+                admin
+                @else
+                member
+                @endif
                 </td>
-                </tr>
-                <tr>
-                <th scope="row">1</th>
-                <td>Diarick purba</td>
-                <td>admin</td>
-                <td>shemale</td>
-                <td>binus square</td>
-                <td>haha</td>
-                <td>29-02-2019</td>
+                <td>{{$u->gender}}</td>
+                <td>{{$u->address}}</td>
+                <td> <img src="/storage/profilepicture/{{$u->picture}}" class="rounded-circle" width="100" height ="100"></td>
+                <td>{{$u->DOB}}</td>
                 <td>
-                    <a href="" class="badge badge-success">edit</a>
-                    <a href="" class="badge badge-danger">delete</a>
+                    <a href="user/{{$u->id}}/edit" class="badge badge-success">edit</a>
+                    <form action="/manage/user/{{$u->id}}" method="post">
+                        @method('delete')
+                        @csrf
+                            <button type="submit" class="badge badge-danger">delete</button>
+                        </form>
                 </td>
-                </tr>
+            </tr>
+            @endforeach
+
+                
 
             </tbody>
         </table>
