@@ -3,7 +3,6 @@
 @section('title','ini manageMain')
 
 
-
 @section('content')
     <div class="container">
     <h1>Manage User</h1>
