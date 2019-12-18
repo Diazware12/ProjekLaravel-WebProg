@@ -9,8 +9,8 @@
     @foreach ($message as $m)
         <div class="card mb-3">
             <div class="row no-gutters">
-                <div class="col-md-2">
-                    <img src=".." class="card-img" alt="...">
+                <div class="col-md-3">
+                    <img src="/storage/profilepicture/{{$m->userSender->picture}}" class="card-img" width="320" height="200">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

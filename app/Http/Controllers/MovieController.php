@@ -42,7 +42,7 @@ class MovieController extends Controller
         $request->validate([
             'name' => ['required'],
             'genre' => ['required'],
-            'description' => ['required'],
+            'description' => ['required','max:255'],
             'rate' => ['required', 'numeric', 'between:1,10'],
             'myFile' => ['required', 'mimes:jpeg,png,jpg'],
         ]);

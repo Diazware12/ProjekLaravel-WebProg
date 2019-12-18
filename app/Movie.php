@@ -42,3 +42,4 @@ class Movie extends Model
         return null;
     }
 }
+
