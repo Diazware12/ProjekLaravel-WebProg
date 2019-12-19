@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //untuk menampilkan page manageUser
         $user=User::all();
      
         return view('admin/manageUser',['user'=>$user]);
@@ -27,6 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        //untuk menampilkan page addUser
         return view('admin/addUser');
     }
 
@@ -38,6 +40,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //untuk memasukan data ke dalam database
+        //validasi
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
@@ -95,6 +99,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //untuk mengupdate data di dalam database
+        //validasi
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -129,6 +135,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        //untuk menghapus data user
         unlink(storage_path('app/public/profilepicture/'.$user->picture));
         User::destroy($user->id);
         return redirect('/manage/user');

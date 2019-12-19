@@ -14,6 +14,7 @@ class GenreController extends Controller
      */
     public function index()
     {
+        //menampilkan semua genre
         $genre = Genre::all();
         return view('admin/manageGenre',['genre'=>$genre]);
     }
@@ -25,6 +26,7 @@ class GenreController extends Controller
      */
     public function create()
     {
+        //untuk menampilkan page addGenre
         return view('admin/addGenre');
     }
 
@@ -36,6 +38,7 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
+        //untuk memasukan ke database
         $request->validate([
             'name'=>['required']
         ]);
@@ -65,6 +68,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
+        //untuk menampilkan page edit
         return view('/admin/editGenre',['genre'=>$genre]);
     }
 
@@ -77,7 +81,7 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        
+        //untuk mengupdate data
         $request->validate([
             'name'=>['required']
         ]);
@@ -98,7 +102,7 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-       
+       //untuk delete data
         Genre::destroy($genre->id);
         return redirect('/manage/genre');
     }

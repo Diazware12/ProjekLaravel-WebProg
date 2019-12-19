@@ -16,6 +16,7 @@ class SaveController extends Controller
      */
     public function index()
     {
+        //untuk menampilkan page savedMovie
         $save = Save::all()->where('user_id', Auth::id());
         return view('member.savedMovie', ['save'=>$save]);
     }
@@ -38,6 +39,7 @@ class SaveController extends Controller
      */
     public function store(Request $request, Movie $movie)
     {
+        //untuk memasukan data save ke dalam database
         $saves = new Save;
         $saves->user_id = Auth::id();
         $saves->movie_id = $movie->id;
@@ -87,6 +89,7 @@ class SaveController extends Controller
      */
     public function destroy(Save $save)
     {
+        //untuk menghapus movie yang disave
         Save::destroy($save->id);
         return redirect('/save');
     }

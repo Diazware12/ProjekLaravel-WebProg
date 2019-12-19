@@ -12,13 +12,11 @@
 */
 
 
-
-
 Auth::routes();
 
 //guest
 Route::get('/', 'HomeController@index');
-
+//user atau admin
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/search', 'HomeController@search');
 
@@ -45,6 +43,7 @@ Route::get('/manage/user/{user}/edit', 'UserController@edit')->middleware('role'
 Route::post('/manage/user/{user}', 'UserController@update')->middleware('role');
 Route::delete('manage/user/{user}', 'UserController@destroy')->middleware('role');
 
+//untuk save movie
 Route::get('/save', 'SaveController@index')->middleware('auth');
 Route::post('/save/{movie}', 'SaveController@store')->middleware('auth');
 Route::delete('/save/{save}', 'SaveController@destroy')->middleware('auth');
@@ -69,7 +68,7 @@ Route::get('/inbox', 'MessageController@index')->middleware('auth');
 Route::post('/inbox/message', 'MessageController@store')->middleware('auth');
 Route::delete('/inbox/{message}', 'MessageController@destroy')->middleware('auth');
 
-
+//movie detail
 Route::get('/movie/{movie}', 'MovieController@show');
 
 

@@ -54,6 +54,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        //untuk validaasi
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -73,6 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //masukin ke database
 
         $data['picture']->move(storage_path('app/public/profilepicture'), $data['picture']->getClientOriginalName());
         return User::create([

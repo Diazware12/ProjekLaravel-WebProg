@@ -68,6 +68,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
+        //untuk menampilkan page movie detail
         $movies= Movie::find($movie->id);
         return view('movieDetail',['movie'=>$movies]);
     }
@@ -80,6 +81,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
+        //untuk menampilkan page editMovie
         $genre = Genre::all();
         return view('/admin/editMovie', ['movie'=>$movie],['genre'=>$genre]);
     }
@@ -93,6 +95,8 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        //untuk mengupdate data
+        //validasi
         $request->validate([
             'name' => ['required'],
             'genre' => ['required'],
@@ -100,7 +104,7 @@ class MovieController extends Controller
             'rate' => ['required', 'numeric', 'between:1,10'],
             'myFile' => ['required', 'mimes:jpeg,png,jpg'],
         ]);
-
+        
         unlink(storage_path('app/public/moviepicture/'.$movie->picture));
         $request->myFile->move(storage_path('app/public/moviepicture'), $request->myFile->getClientOriginalName());
         $movies = Movie::where('id', $movie->id)
@@ -124,6 +128,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        //untuk menghapus data movie
         unlink(storage_path('app/public/moviepicture/'.$movie->picture));
         Movie::destroy($movie->id);
         return redirect('/manage/movie');

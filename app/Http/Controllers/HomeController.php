@@ -25,13 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //untuk menampilkan home page
         $save = Save::all()->where('user_id', Auth::id());
         $movie= Movie::paginate(10);
-        //dd($movie);
+        
         return view('home', ['movie'=>$movie], ['save'=>$save]);
     }
 
     public function search(Request $request){
+        //untuk menampilkan data ayng disave
         $save = Save::all()->where('user_id', Auth::id());
         $search = $request->search;
         $movie = Movie::where('title', 'LIKE', "%".$search."%")->paginate(10);

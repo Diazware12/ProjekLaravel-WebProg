@@ -15,6 +15,7 @@ class MessageController extends Controller
      */
     public function index()
     {
+        //untuk menampilkan inbox page
         $message = Message::all()->where('user_id_receiver', Auth::id());
         
         return view('member/inbox',['message'=>$message]);
@@ -38,6 +39,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        //untuk memasukan inbox/message ke database
         $message= new Message;
         $message->message=$request->message;
         $message->user_id_sender=Auth::id();
@@ -91,7 +93,7 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-       
+       //untuk menghapus message/inbox
         Message::destroy($message->id);
         
         return redirect('/inbox');

@@ -47,9 +47,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        //
-      
-        
+        //untuk menampilkan page profile 
         return view('member/profile',compact('user'));
     }
 
@@ -61,6 +59,7 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
+        //untuk menampilkan page editProfile
         return view('/member/editProfile',['user'=>$user]);
     }
 
@@ -73,6 +72,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //untuk mengupdate
+        //validasi
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255'],

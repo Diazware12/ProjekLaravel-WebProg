@@ -36,6 +36,7 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+        //untuk masukin ke database
         $comment = new Comments;
         $comment->user_id = Auth::id();
         $comment->movie_id = $request->movieId;
@@ -87,6 +88,7 @@ class CommentsController extends Controller
      */
     public function destroy(Comments $comments)
     {
+        //untuk hapus comment
         Comments::destroy($comments->id);
         return redirect('/movie/'.$comments->movie_id);
         
