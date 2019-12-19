@@ -23,9 +23,9 @@
                                 </form>
                             </div>
                             
-
+                            <a href="/movie/{{$s->movie->id}}">
                                 <h5 class="card-title">{{$s->movie->title}}</h5>
-
+                            </a>
                             
                             <p class="card-text"><small class="text-muted">{{$s->movie->genre->genreName}}</small></p>
                             <p class="card-text">{{$s->movie->description}}</p>

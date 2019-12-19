@@ -16,8 +16,8 @@
 
 Auth::routes();
 
+//guest
 Route::get('/', 'HomeController@index');
-
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/search', 'HomeController@search');
@@ -54,25 +54,18 @@ Route::delete('/save/{save}', 'SaveController@destroy')->middleware('auth');
 
 
 //user
-//disini masih kurang
 Route::get('/users/{user}/profile', 'ProfileController@show')->middleware('auth');
 Route::get('/user/{user}/profile/edit', 'ProfileController@edit')->middleware('auth');
 Route::post('/user/{user}/profile', 'ProfileController@update')->middleware('auth');
-// Route::get('/user/{user}/profile/edit', 'UserController@edit');
-// Route::post('/user/{user}/profile', 'UserController@update');
+
 
 //Comment
 Route::post('/movie/comment', 'CommentsController@store');
 Route::delete('/movie/{comments}', 'CommentsController@destroy');
 
-//Save
-// Route::get('/save', 'SaveController@index')->middleware('auth');
-// Route::post('/save/{movies}', 'SaveController@store')->middleware('auth');
-// Route::delete('/save/{save}', 'SaveController@destroy')->middleware('auth');
 
 //Message
 Route::get('/inbox', 'MessageController@index')->middleware('auth');
-//Route::post('/inbox/{users}', 'MessageController@store');
 Route::post('/inbox/message', 'MessageController@store')->middleware('auth');
 Route::delete('/inbox/{message}', 'MessageController@destroy')->middleware('auth');
 
